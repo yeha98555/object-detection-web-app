@@ -3,13 +3,18 @@
 MODEL_PATH = "./models/"
 
 STYLES = {
-    "candy": "candy",
-    "composition 6": "composition_vii",
-    "feathers": "feathers",
-    "la_muse": "la_muse",
-    "mosaic": "mosaic",
-    "starry night": "starry_night",
-    "the scream": "the_scream",
-    "the wave": "the_wave",
-    "udnie": "udnie",
+    "yolov7_256x320": "yolov7_256x320",
+    "yolov7_256x480": "yolov7_256x480",
+    "yolov7_256x640": "yolov7_256x640",
+    "yolov7_384x640": "yolov7_384x640",
+    "yolov7_480x640": "yolov7_480x640",
+    "yolov7_640x640": "yolov7_640x640",
+    "yolov7_736x1280": "yolov7_736x1280",
+    "yolov7-tiny_256x320": "yolov7-tiny_256x320",
+    "yolov7-tiny_256x480": "yolov7-tiny_256x480",
+    "yolov7-tiny_256x640": "yolov7-tiny_256x640",
+    "yolov7-tiny_384x640": "yolov7-tiny_384x640",
+    "yolov7-tiny_480x640": "yolov7-tiny_480x640",
+    "yolov7-tiny_640x640": "yolov7-tiny_640x640",
+    "yolov7-tiny_736x1280": "yolov7-tiny_736x1280",
 }

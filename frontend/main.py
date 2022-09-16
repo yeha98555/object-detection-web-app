@@ -6,15 +6,20 @@ from PIL import Image
 
 
 STYLES = {
-    "candy": "candy",
-    "composition 6": "composition_vii",
-    "feathers": "feathers",
-    "la_muse": "la_muse",
-    "mosaic": "mosaic",
-    "starry night": "starry_night",
-    "the scream": "the_scream",
-    "the wave": "the_wave",
-    "udnie": "udnie",
+    "yolov7_256x320": "yolov7_256x320",
+    "yolov7_256x480": "yolov7_256x480",
+    "yolov7_256x640": "yolov7_256x640",
+    "yolov7_384x640": "yolov7_384x640",
+    "yolov7_480x640": "yolov7_480x640",
+    "yolov7_640x640": "yolov7_640x640",
+    "yolov7_736x1280": "yolov7_736x1280",
+    "yolov7-tiny_256x320": "yolov7-tiny_256x320",
+    "yolov7-tiny_256x480": "yolov7-tiny_256x480",
+    "yolov7-tiny_256x640": "yolov7-tiny_256x640",
+    "yolov7-tiny_384x640": "yolov7-tiny_384x640",
+    "yolov7-tiny_480x640": "yolov7-tiny_480x640",
+    "yolov7-tiny_640x640": "yolov7-tiny_640x640",
+    "yolov7-tiny_736x1280": "yolov7-tiny_736x1280",
 }
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -23,7 +28,7 @@ st.title('Object Detection Web APP')
 
 image = st.file_uploader('Choose an image')
 
-style = st.selectbox('Choose the style', [i for i in STYLES.keys()])
+style = st.selectbox('Choose the model', [i for i in STYLES.keys()])
 
 if st.button('Detect'):
     if image is not None and style is not None:
