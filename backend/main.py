@@ -21,8 +21,9 @@ app = FastAPI()
 def read_root():
     return {'message:': 'Welcome from the API'}
 
-@app.post("/{style}")
-def get_image(style: str, file: UploadFile = File(...)):
+@app.post("/{style}/{filetype}")
+def get_image(style: str, filetype: str, file: UploadFile = File(...)):
+    print(filetype)
     image = np.array(Image.open(file.file))
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     model = config.STYLES[style]

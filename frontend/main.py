@@ -26,15 +26,17 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title('Object Detection Web APP')
 
-image = st.file_uploader('Choose an image')
+image = st.file_uploader('Choose an image or video')
+
+filetype = st.radio('Choose the file type', ('Image', 'Video'))
 
 style = st.selectbox('Choose the model', [i for i in STYLES.keys()])
 
 if st.button('Detect'):
     if image is not None and style is not None:
         files = {"file": image.getvalue()}
-        res = requests.post(f"http://backend:8080/{style}", files=files)
+        res = requests.post(f"http://backend:8080/{style}/{filetype}", files=files)
         json = res.json()
         image = Image.open(json.get('name'))
         st.image(image)
-        st.write("Image Size: {}".format(json.get('size')))
+        st.write("Size: {}".format(json.get('size')))
