@@ -17,6 +17,10 @@
 ```bash
 docker-compose up -d
 ```
+navigate to http://localhost:8501:
+
+![!web detection sample video](./doc/img/web_detect_sample.gif)
+
 
 ### Reference
 - [web app](https://testdriven.io/blog/fastapi-streamlit/)
