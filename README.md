@@ -18,5 +18,8 @@
 docker-compose up -d
 ```
 
-#### Reference
+### Reference
 - [web app](https://testdriven.io/blog/fastapi-streamlit/)
+- [object detection](https://github.com/hpc203/yolov7-opencv-onnxrun-cpp-py)
+- [yolov7 onnx](https://github.com/PINTO0309/PINTO_model_zoo/tree/main/307_YOLOv7) 
+- [download google drive files with wget](https://www.matthuisman.nz/2019/01/download-google-drive-files-wget-curl.html)
