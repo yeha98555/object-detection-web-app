@@ -1,14 +1,18 @@
-BASE_URL="https://cs.stanford.edu/people/jcjohns/fast-neural-style/models/"
+#!/bin/bash
 
-mkdir -p backend/models/
-cd backend/models/
-curl -O "$BASE_URL/instance_norm/candy.t7"
-curl -O "$BASE_URL/instance_norm/la_muse.t7"
-curl -O "$BASE_URL/instance_norm/mosaic.t7"
-curl -O "$BASE_URL/instance_norm/feathers.t7"
-curl -O "$BASE_URL/instance_norm/the_scream.t7"
-curl -O "$BASE_URL/instance_norm/udnie.t7"
-curl -O "$BASE_URL/eccv16/the_wave.t7"
-curl -O "$BASE_URL/eccv16/starry_night.t7"
-curl -O "$BASE_URL/eccv16/la_muse.t7"
-curl -O "$BASE_URL/eccv16/composition_vii.t7"
+fileid="16p4iHgh0sDTxjIzydHFD2YaHAiahs-bw"
+filename=resources.tar.gz
+modeldir="./backend/model/"
+
+wget --save-cookies cookies.txt 'https://docs.google.com/uc?export=download&id='$fileid -O- \
+     | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1/p' > confirm.txt
+wget --load-cookies cookies.txt -O $filename \
+     'https://docs.google.com/uc?export=download&id='$fileid'&confirm='$(<confirm.txt)
+
+rm -f confirm.txt cookies.txt
+
+mkdir -p $modeldir
+tar zxvf $filename --directory $modeldir
+rm $filename
+
+echo Download finished.
