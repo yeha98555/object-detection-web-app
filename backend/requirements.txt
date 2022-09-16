@@ -6,3 +6,5 @@ opencv-python
 pillow
 python-multipart
 uvicorn
+onnxruntime
+# onnxruntime-gpu  # if have a NVIDIA GPU

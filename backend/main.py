@@ -24,8 +24,9 @@ def read_root():
 @app.post("/{style}")
 def get_image(style: str, file: UploadFile = File(...)):
     image = np.array(Image.open(file.file))
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     model = config.STYLES[style]
-    output, resized = inference.inference(model, image)
+    output = inference.inference(model, image)
     name = f"/storage/{str(uuid.uuid4())}.jpg"
     cv2.imwrite(name, output)
     return {"name": name}

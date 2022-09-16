@@ -1,40 +1,18 @@
 # backend/inference.py
 
 import config
-import cv2
+from YOLOv7 import YOLOv7
 
 
 def inference(model, image):
-    model_name = f"{config.MODEL_PATH}{model}.t7"
-    model = cv2.dnn.readNetFromTorch(model_name)
+    model_name = f"{config.MODEL_PATH}{model}.onnx"
 
-    height, width = int(image.shape[0]), int(image.shape[1])
-    new_width = int((640 / height) * width)
-    resized_image = cv2.resize(image, (new_width, 640), interpolation=cv2.INTER_AREA)
+    # Initialize YOLOv7 object detector
+    yolov7_detector = YOLOv7(model_name, conf_thres=0.3, iou_thres=0.5)
 
-    # Create our blob from the image
-    # The perform a forward pass run of the network
-    # The Mean values for the ImageNet training set are R=103.93, G=116.77, B=123.68
+    boxes, scores, class_ids = yolov7_detector(image)
 
-    inp_blob = cv2.dnn.blobFromImage(
-        resized_image,
-        1.0,
-        (new_width, 640),
-        (103.93, 116.77, 123.68),
-        swapRB=False,
-        crop=False,
-    )
+   # Draw detections
+    output = yolov7_detector.draw_detections(image)
 
-    model.setInput(inp_blob)
-    output = model.forward()
-
-    # Reshape the output Tensor,
-    # add back the mean substruction,
-    # re-order the channels
-    output = output.reshape(3, output.shape[2], output.shape[3])
-    output[0] += 103.93
-    output[1] += 116.77
-    output[2] += 123.68
-
-    output = output.transpose(1, 2, 0)
-    return output, resized_image
+    return output
