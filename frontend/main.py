@@ -34,6 +34,7 @@ if st.button('Detect'):
     if image is not None and style is not None:
         files = {"file": image.getvalue()}
         res = requests.post(f"http://backend:8080/{style}", files=files)
-        img_path = res.json()
-        image = Image.open(img_path.get('name'))
+        json = res.json()
+        image = Image.open(json.get('name'))
         st.image(image)
+        st.write("Image Size: {}".format(json.get('size')))

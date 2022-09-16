@@ -29,7 +29,7 @@ def get_image(style: str, file: UploadFile = File(...)):
     output = inference.inference(model, image)
     name = f"/storage/{str(uuid.uuid4())}.jpg"
     cv2.imwrite(name, output)
-    return {"name": name}
+    return {"name": name, "size": "{0} x {1}".format(*image.shape[:2])}
 
 
 if __name__ == '__main__':
