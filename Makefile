@@ -12,7 +12,7 @@ down:
 	docker-compose down
 
 rm:
-	docker container rm object-detection-web-app_frontend_1
-	docker container rm object-detection-web-app_backend_1
-	docker image rm object-detection-web-app_frontend
-	docker image rm object-detection-web-app_backend
+	docker container rm object-detection-web-app-frontend-1
+	docker container rm object-detection-web-app-backend-1
+	docker image rm object-detection-web-app-frontend
+	docker image rm object-detection-web-app-backend
