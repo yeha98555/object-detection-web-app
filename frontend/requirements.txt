@@ -1,2 +1,5 @@
 protobuf==3.20.*
 streamlit==1.2.0
+aiortc
+av
+streamlit-webrtc
