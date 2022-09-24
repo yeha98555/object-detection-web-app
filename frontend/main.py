@@ -2,6 +2,8 @@
 
 import requests
 import streamlit as st
+from streamlit_webrtc import webrtc_streamer
+import av
 from PIL import Image
 
 
@@ -22,16 +24,27 @@ STYLES = {
     "yolov7-tiny_736x1280": "yolov7-tiny_736x1280",
 }
 
+def video_frame_callback(frame):
+    img = frame.to_ndarray(format="bgr24")
+
+    flipped = img[::-1,:,:]
+
+    return av.VideoFrame.from_ndarray(flipped, format="bgr24")
+
+
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.title('Object Detection Web APP')
 
-filetype = st.radio('Choose the file type', ('Image', 'Video'))
+filetype = st.radio('Choose the file type', ('Image', 'Video', 'Camera'))
 
 if filetype == 'Image':
     image = st.file_uploader('Choose an image', type=['png', 'jpg', 'jpeg'])
-else:
+elif filetype == 'Video':
     image = st.file_uploader('Choose a video', type=['avi', 'mp4', 'mov'])
+else:
+    image = None
+    webrtc_streamer(key="example", video_frame_callback=video_frame_callback)
 
 style = st.selectbox('Choose the model', [i for i in STYLES.keys()])
 
